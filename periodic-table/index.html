@@ -33,7 +33,7 @@
         const ModeButton = document.getElementById("ModeChange");
         const newFarAlong = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
         const newIsElementMode = true
-        let FarAlong = JSON.parse(localStorage.getItem('FarAlong')) || newFarAlong;
+        var FarAlong = JSON.parse(localStorage.getItem('FarAlong')) || newFarAlong;
         JSON.parse(localStorage.getItem("isElementMode")) || newIsElementMode
         const Elements = [
             "hydrogen", "helium", "lithium", "beryllium", "boron", "carbon", "nitrogen", "oxygen", "fluorine", "neon",
@@ -57,7 +57,16 @@
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
         }
-
+        
+        function resetFarAlong() {
+            for (let I = 0; I < FarAlong.length; I++) {
+                const element = FarAlong[I];
+                FarAlong[I] = 0;
+            }
+            console.log(FarAlong)
+            localStorage.setItem('FarAlong', JSON.stringify(FarAlong));
+        }
+        
         function endChecker() {
             for (let I = 0; I < FarAlong.length; I++) {
                 const V = FarAlong[I];
@@ -74,8 +83,7 @@
             }
             if (noneLeft == true) {
                     alert("complete");
-                    FarAlong = newFarAlong;
-                    localStorage.setItem('FarAlong', JSON.stringify(FarAlong));
+                    resetFarAlong()
                     return;
             }
         }
@@ -97,22 +105,18 @@
 
         function toggleMode() {
             var E_Mode = localStorage.getItem("isElementMode") === "true";
-            console.log(E_Mode);
             localStorage.setItem("isElementMode", !E_Mode);
             if (E_Mode) {
-                console.log("b");
                 A = Elements;
                 B = Abbreviations;
                 ModeButton.innerText = "Elements";
             } else {
-                console.log("a");
                 A = Abbreviations;
                 B = Elements;
                 ModeButton.innerText = "Abbreviations";
             }
-            FarAlong = newFarAlong
+            resetFarAlong()
             Setup()
-            console.log(localStorage.getItem("isElementMode"));
         }
 
         
