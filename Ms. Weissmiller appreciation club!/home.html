@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <title>Let's GOOOOOOOO website I shouldn't be on in Ms. Weissmiller's class.</title>
+</head>
+<body>
+    <h1>Ms. Weissmiller is awesome.</h1>
+    <h1>W teacher</h1>
+    <img id="image" src="https://thedispatchonline.net/wp-content/uploads/2020/12/Screen-Shot-2020-12-15-at-1.00.46-PM.png"/>
+    <script>
+        var img = document.getElementById("image")
+        var i = 1;                  //  set your counter to 1
+        var otherI = false
+        function myLoop() {         //  create a loop function
+        setTimeout(function() {   //  call a 3s setTimeout when the loop is called
+            if (otherI) {
+                img.src = "https://thedispatchonline.net/wp-content/uploads/2020/12/Screen-Shot-2020-12-15-at-1.00.46-PM.png"   //  your code here
+                otherI = false
+            }else{
+                img.src = "https://lh3.googleusercontent.com/a-/ALV-UjXAwRpnirfdEs7hhX9PEtTfn52bQSR4EawXzxCWn9FWd5PJNRwh=s408-p-k-rw-no"
+                otherI = true
+            }
+            i++;                    //  increment the counter
+            if (i < 10) {           //  if the counter < 10, call the loop function
+            myLoop();             //  ..  again which will trigger another 
+            }                       //  ..  setTimeout()
+        }, 3000)
+        }
+
+        myLoop();   
+    </script>
+</body>
