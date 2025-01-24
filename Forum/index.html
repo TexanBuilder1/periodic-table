@@ -13,6 +13,9 @@
             .then(data => {
                 console.log(data.last);
                 document.getElementById("Output").innerText = data.last;
+                wait(5000);
+                var a = prompt("Change")
+                data.last = a
             })
             .catch(error => console.error('Error fetching data:', error));
     </script>
